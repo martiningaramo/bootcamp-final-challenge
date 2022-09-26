@@ -1,8 +1,13 @@
 FROM node:16
 
-WORKDIR /app 
-COPY . /app 
+WORKDIR /app
 
-RUN npm install 
+COPY . .
 
-CMD ["npm", "start"]
+RUN npm install express
+
+RUN npm install -g npm@8.19.2
+
+EXPOSE 3000
+
+CMD [ "node", "server.js" ]
