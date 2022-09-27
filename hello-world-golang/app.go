@@ -9,14 +9,14 @@ import (
 var scores = make(map[string]int)
 
 func main() {
-	http.HandleFunc("/", HelloServer)
+	http.HandleFunc("/hello", HelloServer)
 	http.HandleFunc("/inc-score", IncrementCounter)
 	http.HandleFunc("/get-scores", GetScores)
 	http.ListenAndServe(":3002", nil)
 }
 
 func HelloServer(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, World!")
+	fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:])
 }
 
 // IncrementCounter increments some "score" for a user
